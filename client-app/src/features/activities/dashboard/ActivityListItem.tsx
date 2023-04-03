@@ -12,7 +12,7 @@ interface Props {
 
 export default function ActivityListItem({activity}: Props){
 
-    const {activityStore} = useStore();
+    const {activityStore, userStore} = useStore();
     const {deleteActivity} = activityStore;
 
 
@@ -24,7 +24,7 @@ export default function ActivityListItem({activity}: Props){
                     <Label attached='top' color='red' content='Cancelled' style={{textAlign: 'center'}}/>}
                 <Item.Group>
                     <Item>
-                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src='assets/user.png'/>
+                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src={userStore.user?.image || 'assets/user.png'}/>
                         <Item.Content>
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>
                                 {activity.title}

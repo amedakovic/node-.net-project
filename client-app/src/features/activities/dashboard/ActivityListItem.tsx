@@ -1,8 +1,7 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Item, ItemDescription, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
-import { useStore } from '../../../app/stores/store';
 import {format} from 'date-fns';
 import ActivityListItemAttendee from './ActivityListItemAttendee';
 
@@ -11,12 +10,6 @@ interface Props {
 }
 
 export default function ActivityListItem({activity}: Props){
-
-    const {activityStore, userStore} = useStore();
-    const {deleteActivity} = activityStore;
-
-
-
     return(
         <Segment.Group>
             <Segment>
@@ -24,7 +17,7 @@ export default function ActivityListItem({activity}: Props){
                     <Label attached='top' color='red' content='Cancelled' style={{textAlign: 'center'}}/>}
                 <Item.Group>
                     <Item>
-                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src={userStore.user?.image || 'assets/user.png'}/>
+                        <Item.Image style={{marginBottom: 3}} size='tiny' circular src={activity.host?.image || 'assets/user.png'}/>
                         <Item.Content>
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>
                                 {activity.title}

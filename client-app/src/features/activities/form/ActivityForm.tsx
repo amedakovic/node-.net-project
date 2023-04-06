@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button,Header,Segment } from "semantic-ui-react";
 import LoadingComponent from "../../../app/layouts/LoadingComponent";
-import { Activity, ActivityFormValues } from "../../../app/models/activity";
+import {  ActivityFormValues } from "../../../app/models/activity";
 import { useStore } from "../../../app/stores/store";
 import { Formik, Form } from "formik";
 import * as Yup from 'yup'; 
@@ -13,14 +13,13 @@ import MySelectInput from "../../../app/common/form/MySelectInput";
 import { categoryOptions } from "../../../app/common/options/categoryOptions";
 import {v4 as uuid} from 'uuid';
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { values } from "mobx";
 
 
 export default observer(function ActivityForm(){
 
     const {activityStore} = useStore();
     const {loadActivity,loadingInitial, 
-            createActivity, updateActivity, loading} = activityStore;
+            createActivity, updateActivity} = activityStore;
     const {id} = useParams();
     const navigate = useNavigate();
 
